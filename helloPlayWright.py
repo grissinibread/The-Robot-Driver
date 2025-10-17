@@ -8,7 +8,10 @@ def run(playwright: Playwright) -> None:
     context = browser.new_context()
     page = context.new_page()
 
-    page.goto("https://www.uniqlo.com/us/en/men")
+    page.goto("https://www.uniqlo.com/us/en/men",
+              wait_until = "domcontentloaded",
+              timeout = 60000)
+
     page.get_by_role("button", name="What are you looking for?").click()
     page.get_by_role("textbox", name="Search by keyword").click()
     page.get_by_role("textbox", name="Search by keyword").fill("lambswool sweater")
